@@ -1,9 +1,8 @@
 package com.example.Course.project;
 
-import com.example.Course.project.controller.TransferController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+
 
 @SpringBootApplication
 

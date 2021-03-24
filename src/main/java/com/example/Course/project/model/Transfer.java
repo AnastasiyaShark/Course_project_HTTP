@@ -3,8 +3,6 @@ package com.example.Course.project.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Random;
-
 
 public class Transfer {
 

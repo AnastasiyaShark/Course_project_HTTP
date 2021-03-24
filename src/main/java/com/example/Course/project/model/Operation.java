@@ -1,10 +1,5 @@
 package com.example.Course.project.model;
 
-
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Random;
 
 public class Operation {
@@ -18,7 +13,8 @@ public class Operation {
 
     public static String generationСode() {
         Random rand = new Random();
-        int a = rand.nextInt();
+        int maxValueA = 9632564;
+        int a = rand.nextInt(maxValueA);
         String code= String.valueOf(a);
         return code;
     }

@@ -20,27 +20,21 @@ public class TransferController {
        @PostMapping("/transfer")
         public Operation save(@RequestBody Transfer transfer) {
            Transfer sendTransfer = service.saveTransfer(transfer);
-           Operation op = sendTransfer.getOperationId();
-           System.out.println("Я отправил OperationId" + " " + op);
-         return op;
+           return sendTransfer.getOperationId();
     }
+
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/confirmOperation")
         public Operation confirm (@RequestBody ConfirmationOfTheOperation confirmOperation){
-
-        System.out.println("operationId" + " "+ confirmOperation.getOperationId());
-        System.out.println("code" + " "+ confirmOperation.getCode());
-//           if (code == null || code.isEmpty()){
-////               System.out.println("Я отправил" + service.confirmTransfer(operationId));
-//               throw new ErrorTransfer("hbfgv");
-//           }
-
+           String code = confirmOperation.getCode();
+           if (code == null || code.isEmpty()){
+               throw new ErrorTransfer("Verification code is empty.");
+           }
         return confirmOperation.getOperationId();
     }
 
-
-
-
+    
     @ExceptionHandler(ErrorInputData.class)
     public ResponseEntity<String> errorInputDataHandler (ErrorInputData e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -51,9 +45,3 @@ public class TransferController {
     }
 }
 
-//    @PostMapping("/transfer")
-//    public Operation save(@RequestBody Transfer transfer) {
-//        Transfer savedTransfer = service.saveTransfer(transfer);
-//        Operation op = savedTransfer.getOperationId();
-//        return op;
-//    }

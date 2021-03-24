@@ -11,8 +11,6 @@ public class TransferService {
     @Autowired
    TransferRepository repository;
 
-
-
     public Transfer saveTransfer(Transfer transfer) {
         return repository.saveTransfer(transfer);
     }

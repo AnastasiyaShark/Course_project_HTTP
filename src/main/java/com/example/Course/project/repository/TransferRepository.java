@@ -21,7 +21,7 @@ public class TransferRepository {
     return transfer;
 }
 
-    public Operation confirmTransfer  (Operation confirm){
+    public Operation confirmTransfer (Operation confirm){
        return confirm;
     }
 }

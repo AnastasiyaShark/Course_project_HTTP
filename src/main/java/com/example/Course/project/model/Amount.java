@@ -23,11 +23,11 @@ public class Amount {
     private boolean checkValue(Integer  value) {
         //если пусто
         if (isEmpty(value)) {
-            throw new ErrorInputData("Value is empty");
+            throw new ErrorInputData("The field \"Transfer amount\" is not filled.");
         }
         // не может быть равное или меньше 0
         if (value <= 0) {
-            throw new ErrorInputData("Value is incorrect");
+            throw new ErrorInputData("The \"Transfer Amount\" field contains a value equal to 0 or less than 0.");
         }
         return true;
     }
