@@ -20,7 +20,10 @@ public class Amount {
         this.currency = currency;
     }
 
-    private boolean checkValue(Integer  value) {
+    public Amount() {
+    }
+
+    public boolean checkValue(Integer  value) {
         //если пусто
         if (isEmpty(value)) {
             throw new ErrorInputData("The field \"Transfer amount\" is not filled.");
@@ -32,7 +35,7 @@ public class Amount {
         return true;
     }
 
-    private boolean isEmpty(Integer value) {
+    public boolean isEmpty(Integer value) {
         return value == null;
     }
 
@@ -42,6 +45,14 @@ public class Amount {
 
     public String getCurrency() {
         return currency;
+    }
+
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "value=" + value +
+                ", currency='" + currency + '\'' +
+                '}';
     }
 }
 

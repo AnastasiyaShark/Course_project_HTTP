@@ -11,6 +11,7 @@ public class Transfer {
     private Card cardTo;
     private Amount amount;
     private Operation operationId;
+
     @JsonCreator
     public Transfer(@JsonProperty("cardFromNumber") String number1,
                     @JsonProperty("cardFromValidTill") String validTill,
@@ -25,8 +26,6 @@ public class Transfer {
 
     }
 
-    public Transfer() {
-    }
 
     public Card getCardFrom() {
         return cardFrom;

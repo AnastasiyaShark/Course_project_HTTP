@@ -24,4 +24,8 @@ public class TransferRepository {
     public Operation confirmTransfer (Operation confirm){
        return confirm;
     }
+
+    public int size (){
+       return transferRepository.size();
+    }
 }

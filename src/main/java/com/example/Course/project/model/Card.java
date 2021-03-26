@@ -19,7 +19,7 @@ public class Card {
 
 
     public Card(String number, String validTill, String cardCVV) {
-        if (checkNumber(number)) {
+        if (checkNumber1(number) && checkNumber2(number)) {
             this.number = number;
         }
         if (checkValidTill(validTill)) {
@@ -31,9 +31,10 @@ public class Card {
 
     }
 
-
+    public Card() {
+    }
     public Card(String number) {
-        if (checkNumber(number)) {
+        if (checkNumber1(number) && checkNumber2(number)) {
             this.number = number;
         }
         this.validTill = forCardTo;
@@ -41,11 +42,15 @@ public class Card {
 
     }
 
-    private boolean checkNumber(String number) {
-        //если пусто
-        if (isEmpty(number)) {
-            throw new ErrorInputData("The field \"Card number\" is not filled.");
-        }
+   public boolean checkNumber1(String number) {
+       //если пусто
+       if (isEmpty(number)) {
+           throw new ErrorInputData("The field \"Card number\" is not filled.");
+       }
+       return true;
+   }
+
+       public boolean checkNumber2 (String number) {
         // минимум 16 знаков
         if (number.length() != 16) {
             throw new ErrorInputData("The field \"Card number\" contains the wrong number of characters.");
@@ -53,13 +58,13 @@ public class Card {
         return true;
     }
 
-    private boolean checkValidTill(String validTill) {
+    public boolean checkValidTill(String validTill) {
         //если пусто
         if (isEmpty(validTill)) {
             throw new ErrorInputData("The field \"MM / YY\" is not filled.");
         }
         //минимум 4 знака
-        if (validTill.length() < 4) {
+        if (validTill.length() != 5) {
             throw new ErrorInputData("The field \"MM / YY\" contains an invalid number of characters.");
         }
         YearMonth lastValidMonth = parse(validTill);
@@ -77,7 +82,7 @@ public class Card {
 
 
     //parse
-    private YearMonth parse(String validTill){
+    public YearMonth parse(String validTill){
         try{
             DateTimeFormatter ccMonthFormatter = DateTimeFormatter.ofPattern("MM/uu");
             //получает экземпляр YearMonth из текстовой строки с помощью специального средства форматирования.
@@ -89,7 +94,7 @@ public class Card {
 
     }
 
-    private boolean checkCardCVV(String cardCVV) {
+    public boolean checkCardCVV(String cardCVV) {
         //если пусто
         if (isEmpty(cardCVV)) {
             throw new ErrorInputData("The field \"CVV\" is not filled.");
@@ -101,8 +106,8 @@ public class Card {
         return true;
     }
 
-    private boolean isEmpty(String str) {
-        return str == null || str.isEmpty();
+    public boolean isEmpty(String str) {
+        return str == null ||str.isEmpty();
     }
 
     public String getNumber() {
