@@ -10,6 +10,10 @@ public class Amount {
 
     private int value;
     private String currency;
+    private double proc = 0.1;
+    private double com;
+
+
 
     @JsonCreator
     public Amount(@JsonProperty ("value") Integer value,
@@ -18,8 +22,8 @@ public class Amount {
             this.value = value;
         }
         this.currency = currency;
+        this.com = value * proc;
     }
-
     public Amount() {
     }
 
@@ -49,9 +53,11 @@ public class Amount {
 
     @Override
     public String toString() {
+        String proc = String.format("Comission %.3f",com);
         return "Amount{" +
                 "value=" + value +
                 ", currency='" + currency + '\'' +
+                proc +
                 '}';
     }
 }

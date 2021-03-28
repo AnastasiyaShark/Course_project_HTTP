@@ -24,6 +24,8 @@ public class TransferRepositoryTest {
         transferRepository.saveTransfer(transferActual);
 
         assertTrue(transferRepositoryActual.size() == transferRepository.size());
-
     }
+
+
+
 }

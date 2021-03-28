@@ -121,6 +121,22 @@ public class Card {
     public String getCardCVV() {
         return cardCVV;
     }
+
+
+    @Override
+    public String toString() {
+        if (validTill.equals(forCardTo)&& cardCVV.equals(forCardTo)){
+            return "Card{" +
+                    "number='" + number + '\'' +
+                    '}';
+        }
+        return "Card{" +
+                "number='" + number + '\'' +
+                ", validTill='" + validTill + '\'' +
+                ", cardCVV='" + cardCVV + '\'' +
+                '}';
+
+    }
 }
 
 
