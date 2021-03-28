@@ -24,12 +24,12 @@ public class ITApplicationTests {
 
     private final static Path RESOURCE_PATH = Path.of(System.getProperty("user.dir"));
 
-    String  cardFromNumber = "2222222222222222";
-    String  cardFromValidTill = "12/22";
-    String  cardFromCVV = "222";
-    String  cardToNumber = "3333333333333333";
+    String cardFromNumber = "2222222222222222";
+    String cardFromValidTill = "12/22";
+    String cardFromCVV = "222";
+    String cardToNumber = "3333333333333333";
     int value = 2543;
-    String  currency = "rubel";
+    String currency = "rubel";
     String operationId = "23156632";
     String code = "0000";
 
@@ -49,36 +49,36 @@ public class ITApplicationTests {
     void testSave() {
         String jsonString = String.format("{\"cardFromNumber\": \"%s\", \"cardFromValidTill\": \"%s\", \"cardFromCVV\": \"%s\", " +
                         "\"cardToNumber\":  \"%s\", \"amount\": {\"value\": \"%d\", \"currency\": \"%s\" }}",
-                cardFromNumber,cardFromValidTill,cardFromCVV, cardToNumber, value, currency);
-        final String baseUrl = String.format("http://localhost:%d%s",courseApp.getMappedPort(port),transfer);
+                cardFromNumber, cardFromValidTill, cardFromCVV, cardToNumber, value, currency);
+        final String baseUrl = String.format("http://localhost:%d%s", courseApp.getMappedPort(port), transfer);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> request = new HttpEntity<>(jsonString,headers);
+        HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
         ResponseEntity<String> response = restTemplate.exchange(baseUrl, HttpMethod.POST, request, String.class);
-        assertEquals(response.getStatusCode(),(HttpStatus.OK));
+        assertEquals(response.getStatusCode(), (HttpStatus.OK));
         String operationId = response.getBody();
 
         Assertions.assertNotNull(operationId);
-        Assertions.assertNotEquals(operationId,"");
+        Assertions.assertNotEquals(operationId, "");
 
     }
 
     @Test
     void testConfirm() {
         String jsonString = String.format("{\"operationId\": \"%s\", \"code\": \"%s\"}",
-                operationId,code);
-        final String baseUrl = String.format("http://localhost:%d%s",courseApp.getMappedPort(port),confirmOperation);
+                operationId, code);
+        final String baseUrl = String.format("http://localhost:%d%s", courseApp.getMappedPort(port), confirmOperation);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> request = new HttpEntity<>(jsonString,headers);
+        HttpEntity<String> request = new HttpEntity<>(jsonString, headers);
         ResponseEntity<String> response = restTemplate.exchange(baseUrl, HttpMethod.POST, request, String.class);
 
-        assertEquals((HttpStatus.OK),response.getStatusCode());
+        assertEquals((HttpStatus.OK), response.getStatusCode());
         String operationId = response.getBody();
 
         Assertions.assertNotNull(operationId);
-        Assertions.assertNotEquals(operationId,"");
+        Assertions.assertNotEquals(operationId, "");
 
     }
 

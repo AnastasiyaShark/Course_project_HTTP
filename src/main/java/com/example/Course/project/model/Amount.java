@@ -14,20 +14,20 @@ public class Amount {
     private double com;
 
 
-
     @JsonCreator
-    public Amount(@JsonProperty ("value") Integer value,
-                  @JsonProperty ("currency")String currency ) {
-        if (checkValue(value)){
+    public Amount(@JsonProperty("value") Integer value,
+                  @JsonProperty("currency") String currency) {
+        if (checkValue(value)) {
             this.value = value;
         }
         this.currency = currency;
         this.com = value * proc;
     }
+
     public Amount() {
     }
 
-    public boolean checkValue(Integer  value) {
+    public boolean checkValue(Integer value) {
         //если пусто
         if (isEmpty(value)) {
             throw new ErrorInputData("The field \"Transfer amount\" is not filled.");
@@ -53,7 +53,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        String proc = String.format("Comission %.3f",com);
+        String proc = String.format("Comission %.3f", com);
         return "Amount{" +
                 "value=" + value +
                 ", currency='" + currency + '\'' +

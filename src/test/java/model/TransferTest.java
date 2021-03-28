@@ -10,23 +10,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class TransferTest {
-    String  cardFromNumber = "2222222222222222";
-    String  cardFromValidTill = "12/22";
-    String  cardFromCVV = "222";
-    String  cardToNumber = "3333333333333333";
+    String cardFromNumber = "2222222222222222";
+    String cardFromValidTill = "12/22";
+    String cardFromCVV = "222";
+    String cardToNumber = "3333333333333333";
     int value = 2543;
-    String  currency = "rubel";
+    String currency = "rubel";
 
 
     @Test
     public void testDeSerializingWithJsonCreatorTransfer() throws IOException {
 
         String jsonString = String.format("{\"cardFromNumber\": \"%s\", \"cardFromValidTill\": \"%s\", \"cardFromCVV\": \"%s\", " +
-                "\"cardToNumber\":  \"%s\", \"amount\": {\"value\": \"%d\", \"currency\": \"%s\" }}",
-                cardFromNumber,cardFromValidTill,cardFromCVV, cardToNumber, value, currency);
+                        "\"cardToNumber\":  \"%s\", \"amount\": {\"value\": \"%d\", \"currency\": \"%s\" }}",
+                cardFromNumber, cardFromValidTill, cardFromCVV, cardToNumber, value, currency);
 
         ObjectMapper mapper = new ObjectMapper();
-        Transfer transfer = mapper.readValue(jsonString,Transfer.class);
+        Transfer transfer = mapper.readValue(jsonString, Transfer.class);
 
         assertThat(transfer.getCardFrom().getNumber(), equalTo(cardFromNumber));
         assertThat(transfer.getCardFrom().getValidTill(), equalTo(cardFromValidTill));

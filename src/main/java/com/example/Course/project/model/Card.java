@@ -9,7 +9,6 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 
-
 public class Card {
 
     private String number;
@@ -33,6 +32,7 @@ public class Card {
 
     public Card() {
     }
+
     public Card(String number) {
         if (checkNumber1(number) && checkNumber2(number)) {
             this.number = number;
@@ -42,15 +42,15 @@ public class Card {
 
     }
 
-   public boolean checkNumber1(String number) {
-       //если пусто
-       if (isEmpty(number)) {
-           throw new ErrorInputData("The field \"Card number\" is not filled.");
-       }
-       return true;
-   }
+    public boolean checkNumber1(String number) {
+        //если пусто
+        if (isEmpty(number)) {
+            throw new ErrorInputData("The field \"Card number\" is not filled.");
+        }
+        return true;
+    }
 
-       public boolean checkNumber2 (String number) {
+    public boolean checkNumber2(String number) {
         // минимум 16 знаков
         if (number.length() != 16) {
             throw new ErrorInputData("The field \"Card number\" contains the wrong number of characters.");
@@ -82,15 +82,14 @@ public class Card {
 
 
     //parse
-    public YearMonth parse(String validTill){
-        try{
+    public YearMonth parse(String validTill) {
+        try {
             DateTimeFormatter ccMonthFormatter = DateTimeFormatter.ofPattern("MM/uu");
             //получает экземпляр YearMonth из текстовой строки с помощью специального средства форматирования.
             return YearMonth.parse(validTill, ccMonthFormatter);
+        } catch (DateTimeException ex) {
+            throw new ErrorInputData("Failed to parse.");
         }
-         catch (DateTimeException ex){
-             throw new ErrorInputData("Failed to parse.");
-         }
 
     }
 
@@ -107,7 +106,7 @@ public class Card {
     }
 
     public boolean isEmpty(String str) {
-        return str == null ||str.isEmpty();
+        return str == null || str.isEmpty();
     }
 
     public String getNumber() {
@@ -125,7 +124,7 @@ public class Card {
 
     @Override
     public String toString() {
-        if (validTill.equals(forCardTo)&& cardCVV.equals(forCardTo)){
+        if (validTill.equals(forCardTo) && cardCVV.equals(forCardTo)) {
             return "Card{" +
                     "number='" + number + '\'' +
                     '}';

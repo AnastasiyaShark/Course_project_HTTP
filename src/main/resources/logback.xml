@@ -2,10 +2,10 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/default.xml"/>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <!-- путь к логам! -->
-    <property name="LOGS" value="./logs" />
+    <property name="LOGS" value="./logs"/>
     <!-- Объявление типа вывода (файл с ротацией) -->
     <appender name="RollingFile"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -30,16 +30,16 @@
     </appender>
 
     <!-- путь к логам! -->
-    <property name="LOG_FILE" value="./logs/transfers.log" />
+    <property name="LOG_FILE" value="./logs/transfers.log"/>
 
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="CONSOLE"/>
     </root>
     <logger name="org.springframework.web" level="DEBUG"/>
 
     <logger name="transfersLogger" level="info" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="CONSOLE"/>
     </logger>
 
 </configuration>

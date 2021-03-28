@@ -10,8 +10,8 @@ public class ConfirmationOfTheOperation {
     private String code;
 
     @JsonCreator
-    public ConfirmationOfTheOperation(@JsonProperty("operationId")Operation operationId,
-                                      @JsonProperty("code")String code) {
+    public ConfirmationOfTheOperation(@JsonProperty("operationId") Operation operationId,
+                                      @JsonProperty("code") String code) {
         this.operationId = operationId;
         this.code = code;
     }

@@ -1,7 +1,5 @@
 package model;
 
-
-
 import com.example.Course.project.model.ConfirmationOfTheOperation;
 import com.example.Course.project.model.Operation;
 import com.fasterxml.jackson.databind.ObjectMapper;

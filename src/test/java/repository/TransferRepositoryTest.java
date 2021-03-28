@@ -12,8 +12,10 @@ import java.util.List;
 
 public class TransferRepositoryTest {
 
-    Amount amount = new Amount(2543,"rubel");
-    Transfer transferActual = new Transfer("2222222222222222","12/22","222","3333333333333333",amount);
+    Amount amount = new Amount(2543, "rubel");
+    Transfer transferActual = new Transfer("2222222222222222", "12/22", "222",
+            "3333333333333333", amount);
+
     @Test
     public void testSaveTransfer() {
 
@@ -25,7 +27,6 @@ public class TransferRepositoryTest {
 
         assertTrue(transferRepositoryActual.size() == transferRepository.size());
     }
-
 
 
 }

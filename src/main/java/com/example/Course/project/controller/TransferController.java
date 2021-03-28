@@ -1,6 +1,6 @@
 package com.example.Course.project.controller;
 
-import com.example.Course.project.MoneyTransferServiceApplication;
+
 import com.example.Course.project.exeption.ErrorInputData;
 
 import com.example.Course.project.exeption.ErrorTransfer;
@@ -22,34 +22,36 @@ public class TransferController {
 
     @Autowired
     TransferService service;
-       @CrossOrigin(origins = "*")
-       @PostMapping("/transfer")
-        public Operation save(@RequestBody Transfer transfer) {
-           Transfer sendTransfer = service.saveTransfer(transfer);
-           String msg = String.format("CardFrom = %s, CardTo = %s, Amount = %s",transfer.getCardFrom(),
-                   transfer.getCardTo(),transfer.getAmount());
-           logger.info(msg);
-           return sendTransfer.getOperationId();
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/transfer")
+    public Operation save(@RequestBody Transfer transfer) {
+        Transfer sendTransfer = service.saveTransfer(transfer);
+        String msg = String.format("CardFrom = %s, CardTo = %s, Amount = %s", transfer.getCardFrom(),
+                transfer.getCardTo(), transfer.getAmount());
+        logger.info(msg);
+        return sendTransfer.getOperationId();
     }
 
 
     @CrossOrigin(origins = "*")
     @PostMapping("/confirmOperation")
-        public Operation confirm (@RequestBody ConfirmationOfTheOperation confirmOperation){
-           String code = confirmOperation.getCode();
-           if (code == null || code.isEmpty()){
-               throw new ErrorTransfer("Verification code is empty.");
-           }
+    public Operation confirm(@RequestBody ConfirmationOfTheOperation confirmOperation) {
+        String code = confirmOperation.getCode();
+        if (code == null || code.isEmpty()) {
+            throw new ErrorTransfer("Verification code is empty.");
+        }
         return service.confirmTransfer(confirmOperation.getOperationId());
     }
 
 
     @ExceptionHandler(ErrorInputData.class)
-    public ResponseEntity<String> errorInputDataHandler (ErrorInputData e){
+    public ResponseEntity<String> errorInputDataHandler(ErrorInputData e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(ErrorTransfer.class)
-    public ResponseEntity<String> errorTransferHandler (ErrorTransfer e){
+    public ResponseEntity<String> errorTransferHandler(ErrorTransfer e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

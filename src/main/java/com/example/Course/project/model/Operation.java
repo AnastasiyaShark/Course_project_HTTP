@@ -15,7 +15,7 @@ public class Operation {
         Random rand = new Random();
         int maxValueA = 9632564;
         int a = rand.nextInt(maxValueA);
-        String code= String.valueOf(a);
+        String code = String.valueOf(a);
         return code;
     }
 
@@ -29,6 +29,6 @@ public class Operation {
 
     @Override
     public String toString() {
-        return  operationId;
+        return operationId;
     }
 }
